@@ -6,7 +6,6 @@ import io.jsonwebtoken.security.Keys;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Component;
-
 import java.security.Key;
 import java.util.Date;
 
@@ -39,7 +38,7 @@ public class JwtTokenProvider {
     // Extrair email do token
     public String obterEmailDoToken(String token) {
         return Jwts.parser()
-                .verifyWith((javax.crypto.SecretKey) chaveSecreta)
+                .verifyWith((javax.crypto.SecretKey)chaveSecreta)
                 .build()
                 .parseSignedClaims(token)
                 .getPayload()
@@ -50,7 +49,7 @@ public class JwtTokenProvider {
     public boolean validarToken(String token) {
         try {
             Jwts.parser()
-                    .verifyWith((javax.crypto.SecretKey) chaveSecreta)
+                    .verifyWith((javax.crypto.SecretKey)chaveSecreta)
                     .build()
                     .parseSignedClaims(token);
             return true;
